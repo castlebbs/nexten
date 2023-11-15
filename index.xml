@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nexten</title>
+    <link>https://nexten.ie/</link>
+    <description>Recent content on Nexten</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://nexten.ie/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cloud and Containers Security</title>
+      <link>https://nexten.ie/cloud/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexten.ie/cloud/</guid>
+      <description>Cloud and containers are two technologies that enable faster, more scalable, and more efficient application development and deployment. However, they also introduce new security challenges and risks that need to be addressed.
+WHAT IS CLOUD SECURITY? Cloud security is the practice of protecting cloud-based data, applications, and infrastructure from unauthorized access, breaches, and attacks. Cloud security involves implementing security controls at different levels, depending on the cloud service model (SaaS, PaaS, or IaaS) and the shared responsibility between the cloud service provider (CSP) and the cloud customer.</description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>https://nexten.ie/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexten.ie/contact/</guid>
+      <description>We are here to help you Are you curious about something? Do you have some kind of problem with our products? As am hastily invited settled at limited civilly fortune me. Really spring in extent an by. Judge but built gay party world. Of so am he remember although required. Bachelor unpacked be advanced at. Confined in declared marianne is vicinity.
+Please feel free to contact us, our customer service center is working for you 24/7.</description>
+    </item>
+    <item>
+      <title>Embedded Security</title>
+      <link>https://nexten.ie/embeddedsecurity/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexten.ie/embeddedsecurity/</guid>
+      <description>WHAT IS EMBEDDED SECURITY? Embedded security is the process of protecting the embedded components and software on embedded devices. It involves applying security features and best practices at the hardware, firmware, and application level. Embedded security is essential for IoT devices, as they are often exposed to various network and physical attacks.
+OUR EMBEDDED SECURITY SERVICES We offer a range of embedded security services to help you secure your devices throughout their lifecycle.</description>
+    </item>
+    <item>
+      <title>FAQ</title>
+      <link>https://nexten.ie/faq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexten.ie/faq/</guid>
+      <description>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+1. WHAT TO DO IF I HAVE STILL NOT RECEIVED THE ORDER? Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</description>
+    </item>
+    <item>
+      <title>Penetration testing</title>
+      <link>https://nexten.ie/pentesting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexten.ie/pentesting/</guid>
+      <description>WHAT IS PENTESTING? Pentesting, or penetration testing, is a simulated cyberattack on your computer system, network, or application to find and fix security vulnerabilities before hackers can exploit them. Pentesting can help you protect your data, customers, and reputation from cyber threats.
+Pentesting can reveal weaknesses in your design, configuration, or implementation of your system. It can also test your security policies, procedures, and awareness. Pentesting can provide you with a realistic assessment of your security posture and recommendations for improvement.</description>
+    </item>
+    <item>
+      <title>SDLC and DevSecOps---</title>
+      <link>https://nexten.ie/sdlc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexten.ie/sdlc/</guid>
+      <description>Software development is a complex and dynamic process that requires constant collaboration and innovation. However, security is often overlooked or treated as an afterthought in the software development lifecycle (SDLC). This can lead to serious vulnerabilities and risks for the software and its users.
+DevSecOps is a practice that integrates security testing at every stage of the SDLC. It aims to make security a shared responsibility for everyone who is building the software, from developers to operations to security specialists.</description>
+    </item>
+    <item>
+      <title>Secure Code Review</title>
+      <link>https://nexten.ie/crypto/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexten.ie/crypto/</guid>
+      <description>Secure code review is a process of examining the source code of an application to identify and eliminate any security flaws or vulnerabilities that may compromise its functionality, integrity, or confidentiality. Secure code review can be performed manually or automatically, using various tools and techniques.
+WHY IS SECURE CODE REVIEW IMPORTANT? Secure code review is important because it can help to prevent or mitigate many common security issues and vulnerabilities that affect applications, such as data loss or leakage, weak identity and access management, insecure APIs, system and application vulnerabilities, account hijacking, malicious insiders, advanced persistent threats, insufficient due diligence, abuse and nefarious use of services, and DDoS attacks.</description>
+    </item>
+    <item>
+      <title>Threat Modeling</title>
+      <link>https://nexten.ie/threatmodeling/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexten.ie/threatmodeling/</guid>
+      <description>We believe that threat modeling is a fundamental component of system and application security, as it helps to identify and prioritize the most relevant and critical threats and countermeasures. Threat modeling is more effective than relying on generic tools and techniques that may miss unique or emerging forms of attack. We have extensive experience in threat modeling, which allows us to identify threats that are critical and not identified by tools relying on rules and automation.</description>
+    </item>
+  </channel>
+</rss>
