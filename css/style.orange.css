@@ -3197,6 +3197,18 @@ a {
   color: var(--primary-accent);
   text-decoration: none;
 }
+a.linkwhite {
+  color: white;
+}
+
+a.linkgray {
+  color:  #999999
+}
+
+a.linkwhite:hover,  a,linkwhite:focus, a.linkgray:hover,  a,linkgray:focus{
+  color: var(--primary-accent);
+}
+
 a:hover,
 a:focus {
   color: var(--link-focus);
