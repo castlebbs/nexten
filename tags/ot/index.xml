@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OT on Nexten - Cybersecurity, Application Security, Embedded Security</title>
+    <link>https://nexten.ie/tags/ot/</link>
+    <description>Recent content in OT on Nexten - Cybersecurity, Application Security, Embedded Security</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Nov 2023 11:29:20 +0200</lastBuildDate>
+    <atom:link href="https://nexten.ie/tags/ot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ESP32, Secure Boot (Part 1)</title>
+      <link>https://nexten.ie/blog/2023/11/26/esp32-secureboot/</link>
+      <pubDate>Sun, 26 Nov 2023 11:29:20 +0200</pubDate>
+      <guid>https://nexten.ie/blog/2023/11/26/esp32-secureboot/</guid>
+      <description>Understanding Secure Boot ESP32 series (Part 1) This article is part of a series on the Security Features of the Espressif ESP32 microcontroller series. This includes MCUs based on the Xtensa Instruction Set (e.g. ESP32, ESP32-S3), as well as MCUs based on the RISC-V Instruction Set (e.g. ESP32-C3). This is the first article of the series, which will cover:
+Secure Boot V1 (AES Based Secure Boot) (this article) Secure Boot V2 (RSA Based Secure Boot) Flash encryption (AES-XTS and legacy) AES, SHA, RSA, DS and HMAC accelerators World Controller to allow isolated execution environments Introduction ESP32 SoCs are very popular System On a Chip (SoC) microcontrollers made by the company Espressif.</description>
+    </item>
+  </channel>
+</rss>

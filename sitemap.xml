@@ -3,8 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nexten.ie/authors/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/blog/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
   </url><url>
     <loc>https://nexten.ie/categories/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/authors/david-robert/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/tags/embedded/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/categories/embedded/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/tags/esp32/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/blog/2023/11/26/esp32-secureboot/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/tags/iot/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/tags/ot/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/tags/secureboot/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/tags/</loc>
+    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/blog/2023/04/11/audio-iot/</loc>
+    <lastmod>2023-04-11T11:29:20+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/about/</loc>
   </url><url>
     <loc>https://nexten.ie/cloud/</loc>
   </url><url>
@@ -14,15 +54,11 @@
   </url><url>
     <loc>https://nexten.ie/faq/</loc>
   </url><url>
-    <loc>https://nexten.ie/</loc>
-  </url><url>
     <loc>https://nexten.ie/pentesting/</loc>
   </url><url>
     <loc>https://nexten.ie/sdlc/</loc>
   </url><url>
     <loc>https://nexten.ie/crypto/</loc>
-  </url><url>
-    <loc>https://nexten.ie/tags/</loc>
   </url><url>
     <loc>https://nexten.ie/threatmodeling/</loc>
   </url>

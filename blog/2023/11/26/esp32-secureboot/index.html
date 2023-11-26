@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+<meta name="robots" content="all,follow">
+<meta name="googlebot" content="index,follow,snippet,archive">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>ESP32, Secure Boot (Part 1)</title>
+<meta name="author" content="DevCows" />
+
+
+
+
+<meta name="keywords" content="devcows, hugo, go, embedded, secureboot, esp32, IoT, OT">
+
+
+<meta name="description" content="Site template made by Devcows using Hugo">
+
+<meta name="generator" content="Hugo 0.120.4">
+
+
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.11.2/css/all.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link href="/css/animate.css" rel="stylesheet">
+
+
+
+  <link href="/css/style.orange.css" rel="stylesheet" id="theme-stylesheet">
+
+
+
+<link href="/css/custom.css?1701024455" rel="stylesheet">
+
+
+
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+
+<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+
+
+<link href="/css/owl.carousel.css" rel="stylesheet">
+<link href="/css/owl.theme.css" rel="stylesheet">
+
+
+<link rel="alternate" href="https://nexten.ie/index.xml" type="application/rss+xml" title="Nexten - Cybersecurity, Application Security, Embedded Security">
+
+
+
+
+
+
+
+
+<meta property="og:locale" content="en_us">
+<meta property="og:site_name" content="Nexten - Cybersecurity, Application Security, Embedded Security">
+<meta property="og:title" content="ESP32, Secure Boot (Part 1)">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nexten.ie/blog/2023/11/26/esp32-secureboot/" />
+<meta property="og:description" content="Site template made by Devcows using Hugo">
+<meta property="og:image" content="https://nexten.ie/img/banners/banner-2.jpg">
+<meta property="og:image:type" content="image/jpg">
+
+
+
+  <meta property="og:image:width" content="1000">
+  <meta property="og:image:height" content="750">
+
+
+<meta property="og:updated_time" content="2023-11-26T11:29:20&#43;0200">
+
+  
+  
+  <meta property="article:section" content="embedded">
+  <meta property="article:tag" content="embedded">
+  <meta property="article:tag" content="secureboot">
+  <meta property="article:tag" content="esp32">
+  <meta property="article:tag" content="IoT">
+  <meta property="article:tag" content="OT">
+  
+  
+  <meta property="article:published_time" content="2023-11-26T11:29:20&#43;0200">
+  <meta property="article:modified_time" content="2023-11-26T11:29:20&#43;0200">
+
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@GoHugoIO">
+<meta name="twitter:title" content="ESP32, Secure Boot (Part 1)">
+
+<meta name="twitter:image" content="https://nexten.ie/img/banners/banner-2.jpg">
+
+<meta name="twitter:description" content="Site template made by Devcows using Hugo">
+
+
+    <script src="https://kit.fontawesome.com/4e8a710c4e.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+
+    <div id="all">
+
+        
+<header>
+  <div id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-5">
+          <p class="hidden-sm hidden-xs">Contact us on +353 85 252 4082 or <a href="mailto:info@nexten.ie" data-animate-hover="pulse" class="linkwhite" >info@nexten.ie</a></p>
+      <p class="hidden-md hidden-lg"><a href="tel:+353 85 252 4082" data-animate-hover="pulse"><i class="fas fa-phone"></i></a>
+      <a href="mailto:info@nexten.ie" data-animate-hover="pulse"><i class="fas fa-envelope"></i></a>
+      </p>
+      
+        </div>
+        <div class="col-xs-7">
+          <div class="social">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+        <header class="navbar-affixed-top" data-spy="affix" data-offset-top="62">
+    <div class="navbar navbar-default yamm " role="navigation" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="/">
+                    
+                      <img src="/img/c.png" alt="ESP32, Secure Boot (Part 1) logo" class="hidden-xs hidden-sm" />
+                      <img src="/img/c.png" alt="ESP32, Secure Boot (Part 1) logo" class="visible-xs visible-sm" />
+                    
+                    <span class="sr-only">ESP32, Secure Boot (Part 1) - go to homepage</span>
+                </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                      <span class="sr-only">Toggle Navigation</span>
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                </div>
+            </div>
+            
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                  
+
+                  
+                  
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+                  <li class="dropdown ">
+                    <a href="/">Home</a>
+                  </li>
+                  
+                  
+                  
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+                    
+                    
+                    <li class="dropdown ">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
+                        
+                        <ul class="dropdown-menu">
+                            
+                            <li><a href="/threatmodeling">Threat Modeling</a></li>
+                            
+                            <li><a href="/crypto">Applied Cryptography Code Reviews</a></li>
+                            
+                            <li><a href="/embeddedsecurity">Embedded Security</a></li>
+                            
+                            <li><a href="/cloud">CLOUD AND CONTAINERS SECURITY</a></li>
+                            
+                            <li><a href="/pentesting">PENETRATION TESTING</a></li>
+                            
+                            <li><a href="/sdlc">SDLC AND DEVSECOPS</a></li>
+                            
+                        </ul>
+                        
+                    </li>
+                  
+                  
+                  
+                  
+
+                  
+
+                  
+
+                  
+
+                  
+                  <li class="dropdown ">
+                    <a href="/about">About</a>
+                  </li>
+                  
+                  
+                  
+                  
+
+                  
+
+                  
+                    
+                  
+
+                  
+
+                  
+                  <li class="dropdown active">
+                    <a href="/blog/">Blog</a>
+                  </li>
+                  
+                  
+                </ul>
+            </div>
+            
+
+            <div class="collapse clearfix" id="search">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fas fa-search"></i></button>
+                </span>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</header>
+
+
+
+
+        <div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>ESP32, Secure Boot (Part 1)</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    
+
+                    <div class="col-md-9" id="blog-post">
+
+                        
+                          <p class="text-muted text-uppercase mb-small text-right">
+                            
+			      By <a href="/authors/david-robert">David Robert</a>
+                            
+                            
+                            
+                              
+                              
+                                  
+                              
+                                  
+                              
+                                  
+                              
+                                  
+                              
+                                  
+                              
+                                  
+                              
+                                  
+                              
+                                  
+                              
+                                  
+                              
+                                  
+                              
+                                  
+                              
+                                  
+                              
+                              November 26, 2023
+                            
+                          </p>
+                        
+
+                        <div id="post-content">
+                          <h1 id="understanding-secure-boot-esp32-series-part-1">Understanding Secure Boot ESP32 series (Part 1)</h1>
+<p>This article is part of a series on the Security Features of the Espressif ESP32 microcontroller series. This includes MCUs based on the Xtensa Instruction Set (e.g. ESP32, ESP32-S3), as well as MCUs based on the RISC-V Instruction Set (e.g. ESP32-C3). This is the first article of the series, which will cover:</p>
+<ul>
+<li>Secure Boot V1 (AES Based Secure Boot) (this article)</li>
+<li>Secure Boot V2 (RSA Based Secure Boot)</li>
+<li>Flash encryption (AES-XTS and legacy)</li>
+<li>AES, SHA, RSA, DS and HMAC accelerators</li>
+<li>World Controller to allow isolated execution environments</li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p><a href="https://www.espressif.com/en/products/socs">ESP32 SoCs</a> are very popular System On a Chip (SoC) microcontrollers made by the company <a href="https://espressif.com/">Espressif</a>. The CPU cores used in these are RISC-V or Xtensa cores, depending on the model. They are high-performance, low-cost and embed an impressive amount of hardware peripherals. While they are well known for their wireless capabilities (Wi-Fi, Bluetooth), they have an impressive amount of security features and peripherals built in hardware. This includes: Secure Boot, Flash Encryption, a true Random Number Generator (RNG), Hardware Accelerated SHA, AES, HMAC, and RSA, and a World Controller to enable the implementation of a trusted execution environment (TEE). For these reasons, these chips are now found in several consumer electronics products, as well as in IoT and industrial applications.</p>
+<p>In this article, I will discuss the Secure Boot feature of the ESP32 in version 1. Please note that for new designs, it is recommended to use Secure Boot V2, which I will cover in a future article. There are however several reasons to study Secure Boot V1: MCUs supporting only Secure Boot V1 can&rsquo;t be upgraded to Secure Boot V2. That is a new chip revision, a new silicon. This means that using V2 is only for new designs. Also, to understand the technical choices that Espressif made with V2, learning the weaknesses of V1 is essential. In any case, looking at this implementation is really interesting for anyone willing to learn about security in embedded systems.</p>
+<h2 id="what-is-secure-boot">What is Secure Boot</h2>
+<p>With my threat modeller hat, which I never remove when I do security work, I will first clarify what security threats Secure Boot is attempting to mitigate, then I&rsquo;ll provide a high level explanation on how it works. Finally in this article, we&rsquo;ll review the important implementation details to account for when using Secure Boot on these SoCs.</p>
+<h3 id="threat-model">Threat Model</h3>
+<p>When one implements a security feature, it should be crystal clear, what security threat this feature attempts to address. I generally recommend that every security requirement is documented and includes an explicit mapping to the description of the threat this security control is attempting to mitigate. Otherwise, and it happens more often than one may think, there is a lack of clarity into why a specific security feature is implemented. This can result in a false sense of security. And this, in turn, can have severe consequences for the security of the device.</p>
+<p>Secure Boot on embedded systems is implemented as a control to ensure that only the firmware created by the device&rsquo;s manufacturer can be run on the device.</p>
+<p>Let&rsquo;s look at a branch of an attack tree on embedded systems, relevant to secure boot:</p>
+<blockquote>
+<ul>
+<li><strong>T1</strong> Attacker modifies firmware or runs custom firmware on the device in order to extract sensitive information such as personal information, or credentials and cryptographic keys (stored in other memory locations or peripherals), or to unlock functions on a device, leading to loss or revenue for the device manufacturer. <code>(AND)</code>
+<ul>
+<li><strong>T1.1</strong> By creating valid modified firmware image <code>(OR)</code>
+<ul>
+<li><strong>T1.1.1</strong> By exploiting weaknesses in, or absence of, Secure Boot on the target device</li>
+<li><strong>T1.1.2</strong> By using compromised signing key material</li>
+<li><strong>T1.1.3</strong> By exploiting vulnerabilities on an online firmware signing service</li>
+</ul>
+</li>
+<li><strong>T1.2</strong> By uploading modified firmware on the target device <code>(OR)</code>
+<ul>
+<li><strong>T1.2.1</strong> By exploiting weaknesses in over the air firmware update (OTA) feature of the device <code>(OR)</code>
+<ul>
+<li><strong>T1.2.1.1</strong> Exploiting lack of secure channel with the firmware server (e.g. not using TLS)</li>
+<li><strong>T1.2.1.2</strong> Exploiting improper certificate validation during https download on firmware server</li>
+</ul>
+</li>
+<li><strong>T1.2.2</strong> By uploading a custom second stage bootloader and application switching the Boot ROM in serial bootloader mode.</li>
+<li><strong>T1.2.3</strong> By uploading a custom second stage bootloader and application by directly updating content on external flash chip (e.g. directly writing to the chip by SPI),</li>
+<li><strong>T1.2.4</strong> By uploading a custom second stage bootloader and application by JTAG Direct flashing.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>Once you have established a list of threats you&rsquo;re concerned about, you need to identify the different mitigation necessary. Most of the time, and to support defense in depth, several layers of security measures are necessary. For instance mitigating  <strong>T1.2.4</strong> on ESP SoCs would include <strong>M1</strong> <em>Secure Boot</em>, <strong>M2</strong> <em>Flash Encryption</em> to prevent TOCTOU attacks on Secure Boot, <strong>M3</strong> <em>Secure key management</em> for firmware provisioning, <strong>M4</strong> <em>Disabling JTAG</em> by burning relevant eFuse, and <strong>M5</strong> <em>not exposing JTAG headers on the PCB</em>.</p>
+<p>This article focuses merely on <strong>M1</strong>, but I hope the explanation above illustrates the importance of threat modeling for embedded device security, and the proper selection of security controls necessary.</p>
+<p>Also, I should note that a common misconception is to think that Secure Boot mitigates the threats of an attacker accessing and retrieving the firmware on the devices. Secure Boot doesn&rsquo;t protect against these attacks, which enable the attacker to analyze and learn from the vendor&rsquo;s firmware (identify exploitable vulnerabilities in the firmware).These attacks can allow retrieving secrets stored in firmware (which should be prevented). Firmware/Flash encryption are mechanisms put in place to mitigate these categories of threats, and will be covered in future articles.
+Finally, it is also important to note that Secure Boot doesn&rsquo;t guarantee your code is secure, and vulnerabilities free. It merely attempts to provide guarantees that the code running on the embedded system is only the code, which was provided by the vendor/manufacturer.</p>
+<h2 id="secure-boot-on-esp32-family">Secure boot on ESP32 family</h2>
+<p>Secure boot means the code running on the device is trusted. It provides confidence that the code executed has not been tampered with (Integrity) and has been issued by a trusted entity (Authenticity), the device&rsquo;s manufacturer for instance.
+This is achieved by building a chain of trust. On ESP32, typically, this chain is composed of:</p>
+<ol>
+<li>The Boot ROM (<em>First Stage Bootloader</em>)</li>
+<li>The bootloader in Flash (<em>Second Stage Bootloader</em>)</li>
+<li>The firmware application and its partition table.</li>
+</ol>
+<p>Each element of the chain has mechanisms to verify the integrity and authenticity of the next element (it trusts it). Once an element verifies successfully the next element, it transfers control to it. The first element, the Boot ROM (or First stage bootloader) is the root of trust (RoT). The Boot ROM is inherently trusted because it is added during the manufacturing process of the chip, and stored in read-only-memory (ROM). This Boot ROM can&rsquo;t be modified or erased. Please note it doesn&rsquo;t mean that since it&rsquo;s trusted it can&rsquo;t contain vulnerabilities. It only means that we trust that the code on the Boot ROM was provided by Espressif. Vulnerabilities are regularly found in Boot ROMS with various microcontrollers. Since the Boot ROM can&rsquo;t be updated, new revisions of chips need to be made to address vulnerabilities. Existing devices with the vulnerable chip can&rsquo;t be updated.</p>
+<pre><code>        ┌───────── First Stage bootloader in hardware
+        │          Is the Root of Trust (RoT) added during the manufacturing process of the chip
+┌───────────────────┐
+│ Boot ROM          │
+│                   │
+│ (First Stage      │
+│  bootloader)      │ ─────┐
+└───────────────────┘      │ (1)
+                           │ Verifies then
+                           │ Pass control to
+                           │
+                           │
+┌───────────────────┐      │
+│ Bootloader Flash  │ ◄────┘
+│                   │
+│ (Second Stage     │
+│  bootloader)      │ ─────┐
+└───────────────────┘      │ (2)
+                           │ Verifies then
+                           │ Pass control to
+                           │
+                           │
+┌───────────────────┐      │
+│ Application       │ ◄────┘
+│                   │
+│                   │
+│                   │
+└───────────────────┘
+</code></pre>
+<h3 id="first-stage-verification-of-the-second-stage-bootloader-1">First stage: verification of the Second Stage bootloader (1)</h3>
+<p>The Boot ROM (AKA First Stage Bootloader) is the first code that runs when the ESP32 is powered on or reset. It has the highest level of access, including the ability to read all eFuses (even if they are read protected). The Boot ROM is responsible for initializing the system, loading the bootloader flash, and verifying it. Since the Boot ROM is “hard-wired” into the chip during the manufacturing process, it is considered the root of trust (RoT) in the ESP32’s secure boot process.</p>
+<p>The Boot ROM verifies a digest of the Bootloader stored in Flash memory (AKA Second Stage Bootloader) before passing control to it. This is to ensure the Second Stage Bootloader hasn&rsquo;t been tampered with, or replaced by one, which was not issued by the device manufacturer. There are interesting characteristics of this verification regarding how it&rsquo;s done with this version of the secure boot on ESP32.</p>
+<p>One significant aspect is that the verification mechanism doesn&rsquo;t rely on public key cryptography. (Where a private key is used to sign a digest, and a public key is used to verify the signature.) Digital signature would be typically done with algorithms such as RSA, DSA or ECDSA. In the case of Secure Boot v1, a unique secret key is used to form what Espressif calls a digest. I think it&rsquo;s more suitable to call it a Message Authentication Code (MAC). It is using symmetric cryptography instead of public key cryptography. This means that the same secret is used for verifying the Bootloader in Flash, but also for &ldquo;signing&rdquo; new ones. Things often can go wrong when Messages Authentication Codes are used in places where digital signatures should be used (using a symmetric key, instead of a public key for verification). I&rsquo;ll explain later in this article why this choice has important ramifications in the case of Secure Boot v1.</p>
+<p>There are more details to it, related to hardware restrictions and not cryptographic choices. (I won&rsquo;t cover these, but provide at the end of this article the Python code showing the implementation used to generate the authentication code.) Here is a simplified view of how this authentication code is generated. All of this is done in hardware, the AES key is stored in eFuse (block2) and is not accessible by software.</p>
+<pre tabindex="0"><code class="language-pascal" data-lang="pascal">SHA-512( AES-256-ECB( IV || Plaintext_Bootloader_Image ))</code></pre>
+<p>Output digest is 192 bytes of data: the 128-byte IV, followed by the 64-byte SHA-512 digest. It is flashed at offset <code>0x0</code> in the flash (before the bootloader, which is flashed at <code>0x1000</code>).
+So that&rsquo;s interesting. It fulfils a similar objective as a Message Authentication Code (MAC). This is a message authentication code constructed from the combination of a block cipher and a secure hash algorithm but it&rsquo;s not using a known construction such as HMAC or CBC-MAC.</p>
+<h3 id="second-stage-verification-of-the-application-2">Second Stage: verification of the application (2)</h3>
+<p>Once the Second Stage Bootloader is verified, it&rsquo;s given the control. In order to continue the secure boot chain, this second bootloader, stored in flash, needs to verify the application image (and its partition table). For this verification, Espressif chose to use a digital signature scheme, using Deterministic Elliptic Curve Digital Signature Algorithm (Deterministic ECDSA).</p>
+<p>I don&rsquo;t know why Espressif chose a deterministic scheme for ECDSA, but I&rsquo;ll take the liberty to speculate on the reason:</p>
+<ul>
+<li>ECDSA needs a cryptographically secure source of randomness. While the ESP32 SoC contains a <a href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/random.html">hardware RNG</a>, only non-RF entropy sources are enabled during the Second Stage Bootloader stage.</li>
+<li>Several successful attacks on ECDSA are related to issues with the generation of the random number <em>k</em>. For instance: <a href="https://en.wikipedia.org/wiki/PlayStation_3_homebrew#Private_key_compromised">Recovery of private key to sign games for PlayStation 3 console</a>, or <a href="https://www.theregister.com/2013/08/12/android_bug_batters_bitcoin_wallets/">Android bug batters Bitcoin wallets</a>.</li>
+</ul>
+<p>Here are some details from Espressif on how the signature is generated:</p>
+<ul>
+<li>Curve is NIST256p. OpenSSL calls this curve prime256v1, and it is also sometimes called secp256r1.</li>
+<li>The hash function is SHA256.</li>
+<li>The key format used for storage is PEM.
+<ul>
+<li>In the bootloader, the public key for signature verification is flashed as 64 raw bytes.</li>
+</ul>
+</li>
+<li>Image signature is 68 bytes: a 4-byte version word (currently zero), followed by 64 bytes of signature data. These 68 bytes are appended to an app image or partition table data.</li>
+</ul>
+<h3 id="weaknesses-of-secure-boot-v1">Weaknesses of Secure Boot V1</h3>
+<p>The main weakness of Secure Boot V1 on the ESP32 resides in the First Stage Bootloader (Boot ROM). The issue is the scheme being used to verify the authenticity and integrity of the next bootloader is not using public key cryptography. The Boot ROM relies on a shared key to generate a digest. (Which I prefer calling it a Message Authentication Code - MAC.) It uses <strong>the same secret value (AES Key) for both verifying the Bootloader flash digest, and for generating new ones</strong>. This means that if the AES key is retrieved, new custom firmware can be &ldquo;signed&rdquo; (signature is not the correct term here).</p>
+<p>This is actually a problem I often see when doing code review of authentication algorithms. While handling a unique symmetric key makes key management simpler (versus managing public key infrastructures), it assumes that the component verifying authenticity of a message, can also bear the roles of asserting authenticity, and in many cases I reviewed, that&rsquo;s not desirable. What does it mean in the case of Secure Boot v1? Well it means that if the AES digest verification key is obtained, any new firmware can be signed with this key. This breaks the security objective of secure boot as an attacker can upload a new version of the bootloader flash, which will remove application signature verification.</p>
+<p>In the case of ESP32 chips, especially the silicons before revision v3.0, the problem is exacerbated by <a href="https://limitedresults.com/2019/11/pwn-the-esp32-forever-flash-encryption-and-sec-boot-keys-extraction/">successful fault injection attacks</a>, using voltage glitching and allowing retrieval of the AES key. See also <a href="https://www.espressif.com/en/news/Security_Advisory_Concerning_Fault_Injection_and_eFuse_Protections%20">CVE-2019-17391</a> and <a href="https://www.espressif.com/en/news/ESP32_FIA_Analysis">ESP32 Fault Injection Vulnerability - Impact Analysis</a>.</p>
+<h4 id="well-it-could-be-worse">Well it could be worse&hellip;</h4>
+<p>One important aspect to consider is that if the AES key is unique per device, this key recovery attack is not scalable to multiple devices. This means that in order to run custom firmware on multiple devices, physical access to each device is necessary, and the fault injection attack needs to be performed on each device, too. This is very different from an attack like the PlayStation 3 private key access mentioned previously. Now, this could be still really bad depending on your use-case (e.g. a device deployed in public space, or a device containing secrets shared across multiple products). Therefore you should always evaluate the impact for your own application.</p>
+<h4 id="but-you-can-make-it-worse">But you can make it worse&hellip;</h4>
+<p>Ok, now this is where you can really shoot yourself in the foot. There are two secure bootloader modes: <strong>One-time Flash</strong> and <strong>Reflashable</strong>.</p>
+<p>With the <strong>One-time Flash mode</strong>, the first time the device boots it generates a unique AES key with the chip&rsquo;s RNG, burns it in eFuses, calculates the digest and stores it in flash. In this mode it&rsquo;s not possible to flash another bootloader, because there is no way to generate a new digest for this new bootloader.</p>
+<p>If you want to have secure boot enabled and still have the possibility to update your Second Stage bootloader in flash, then you need the <strong>Reflashable mode</strong>. And this is where things can get really ugly. While there are legitimate needs to use secure boot and reflashable boot loader, you still want a unique AES key per device. However, the default behaviour of the ESP-IDF build process in this mode, is to derive the AES key, using SHA-256 with the ECDSA app signing key. And now this is bad. Because generally the ECDSA signing key is the same for all devices. Therefore in this scenario, you&rsquo;re using the same AES key across all your devices, and you make your key recovery attack scalable, bad times.</p>
+<p>Finally I want to talk about another configuration option, which is <strong>Signed App Verification Without Hardware Secure Boot</strong>. It could be alright if you understand what threats this feature is addressing. In this mode, the Root of Trust (RoT) is the Second Stage Bootloader in Flash, not the Boot ROM. As the code for this RoT is mutable (in flash), your devices will still be vulnerable to several threats, especially all threats with physical access to the device. (E.g. <strong>T1.2.2</strong>, <strong>T1.2.3</strong> and <strong>T1.2.4</strong> in the examples previously described.) There are however use cases, where using this option can make sense depending on your threat model.</p>
+<h3 id="recommendations">Recommendations</h3>
+<p>Obviously the best recommendation is to use Secure Boot V2 if you can (if you use a version of silicon, which supports it). However, if you can&rsquo;t, there are a few things, which can be done to improve security of Secure Boot V1:</p>
+<ol>
+<li><strong>Use a unique AES key per device</strong>. This is the main recommendation. Always do that with V1.</li>
+<li><strong>Let the devices generate the AES key for you</strong>. With this way, the key is never exposed to any system or application other than the ESP hardware. You can&rsquo;t lose what you don&rsquo;t have, one can&rsquo;t steal what you don&rsquo;t have. It&rsquo;s a golden rule in security, if you don&rsquo;t really need it, don&rsquo;t handle it.</li>
+<li><strong>Use flash encryption</strong>. If secure boot is used without Flash Encryption, your device is vulnerable to a time-of-check to time-of-use attack (TOCTOU), where flash contents is changed just after image verification by the bootloader.</li>
+<li><strong>Disable JTAG and ROM BASIC interpreter</strong>. For defense in depth, you want to disable the different entry points used to upload new firmware, where possible.</li>
+</ol>
+<h3 id="implementation-reference-of-flash-bootloader-digest-mac-generation">Implementation reference of Flash Bootloader digest (MAC) generation</h3>
+<p>This code is an extract of the <a href="https://github.com/espressif/esptool/blob/3a82d7a2d31f509038a5947ae73c3e488be5d664/espsecure/__init__.py#L89-L151">espsecure.py</a> tool provided by Espressif, it is used when it is desired that the Second Stage Bootloader is not signed in Hardware. This gives the right level of details in the implementation.</p>
+<p>The creation of the digest is highlighted (lines 121 to 140):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;display:grid;"><code class="language-python2" data-lang="python2"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 89</span><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">digest_secure_bootloader</span>(args):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 90</span><span>    <span style="color:#c30">&#34;&#34;&#34;Calculate the digest of a bootloader image, in the same way the hardware
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 91</span><span><span style="color:#c30">    secure boot engine would do so. Can be used with a pre-loaded key to update a
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 92</span><span><span style="color:#c30">    secure bootloader.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 93</span><span>    _check_output_is_not_input(args<span style="color:#555">.</span>keyfile, args<span style="color:#555">.</span>output)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 94</span><span>    _check_output_is_not_input(args<span style="color:#555">.</span>image, args<span style="color:#555">.</span>output)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 95</span><span>    _check_output_is_not_input(args<span style="color:#555">.</span>iv, args<span style="color:#555">.</span>output)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 96</span><span>    <span style="color:#069;font-weight:bold">if</span> args<span style="color:#555">.</span>iv <span style="color:#000;font-weight:bold">is</span> <span style="color:#000;font-weight:bold">not</span> None:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 97</span><span>        <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;WARNING: --iv argument is for TESTING PURPOSES ONLY&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 98</span><span>        iv <span style="color:#555">=</span> args<span style="color:#555">.</span>iv<span style="color:#555">.</span>read(<span style="color:#f60">128</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 99</span><span>    <span style="color:#069;font-weight:bold">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">100</span><span>        iv <span style="color:#555">=</span> os<span style="color:#555">.</span>urandom(<span style="color:#f60">128</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">101</span><span>    plaintext_image <span style="color:#555">=</span> args<span style="color:#555">.</span>image<span style="color:#555">.</span>read()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">102</span><span>    args<span style="color:#555">.</span>image<span style="color:#555">.</span>seek(<span style="color:#f60">0</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">103</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">104</span><span>    <span style="color:#09f;font-style:italic"># secure boot engine reads in 128 byte blocks (ie SHA512 block</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">105</span><span>    <span style="color:#09f;font-style:italic"># size), but also doesn&#39;t look for any appended SHA-256 digest</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">106</span><span>    fw_image <span style="color:#555">=</span> esptool<span style="color:#555">.</span>bin_image<span style="color:#555">.</span>ESP32FirmwareImage(args<span style="color:#555">.</span>image)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">107</span><span>    <span style="color:#069;font-weight:bold">if</span> fw_image<span style="color:#555">.</span>append_digest:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">108</span><span>        <span style="color:#069;font-weight:bold">if</span> <span style="color:#366">len</span>(plaintext_image) <span style="color:#555">%</span> <span style="color:#f60">128</span> <span style="color:#555">&lt;=</span> <span style="color:#f60">32</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">109</span><span>            <span style="color:#09f;font-style:italic"># ROM bootloader will read to the end of the 128 byte block, but not</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">110</span><span>            <span style="color:#09f;font-style:italic"># to the end of the SHA-256 digest at the end</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">111</span><span>            new_len <span style="color:#555">=</span> <span style="color:#366">len</span>(plaintext_image) <span style="color:#555">-</span> (<span style="color:#366">len</span>(plaintext_image) <span style="color:#555">%</span> <span style="color:#f60">128</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">112</span><span>            plaintext_image <span style="color:#555">=</span> plaintext_image[:new_len]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">113</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">114</span><span>    <span style="color:#09f;font-style:italic"># if image isn&#39;t 128 byte multiple then pad with 0xFF (ie unwritten flash)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">115</span><span>    <span style="color:#09f;font-style:italic"># as this is what the secure boot engine will see</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">116</span><span>    <span style="color:#069;font-weight:bold">if</span> <span style="color:#366">len</span>(plaintext_image) <span style="color:#555">%</span> <span style="color:#f60">128</span> <span style="color:#555">!=</span> <span style="color:#f60">0</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">117</span><span>        plaintext_image <span style="color:#555">+=</span> <span style="color:#c30">b</span><span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\xFF</span><span style="color:#c30">&#34;</span> <span style="color:#555">*</span> (<span style="color:#f60">128</span> <span style="color:#555">-</span> (<span style="color:#366">len</span>(plaintext_image) <span style="color:#555">%</span> <span style="color:#f60">128</span>))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">118</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">119</span><span>    plaintext <span style="color:#555">=</span> iv <span style="color:#555">+</span> plaintext_image
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">120</span><span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">121</span><span>    <span style="color:#09f;font-style:italic"># Secure Boot digest algorithm in hardware uses AES256 ECB to</span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">122</span><span>    <span style="color:#09f;font-style:italic"># produce a ciphertext, then feeds output through SHA-512 to</span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">123</span><span>    <span style="color:#09f;font-style:italic"># produce the digest. Each block in/out of ECB is reordered</span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">124</span><span>    <span style="color:#09f;font-style:italic"># (due to hardware quirks not for security.)</span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">125</span><span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">126</span><span>    key <span style="color:#555">=</span> _load_hardware_key(args<span style="color:#555">.</span>keyfile)
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">127</span><span>    backend <span style="color:#555">=</span> default_backend()
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">128</span><span>    cipher <span style="color:#555">=</span> Cipher(algorithms<span style="color:#555">.</span>AES(key), modes<span style="color:#555">.</span>ECB(), backend<span style="color:#555">=</span>backend)
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">129</span><span>    encryptor <span style="color:#555">=</span> cipher<span style="color:#555">.</span>encryptor()
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">130</span><span>    digest <span style="color:#555">=</span> hashlib<span style="color:#555">.</span>sha512()
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">131</span><span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">132</span><span>    <span style="color:#069;font-weight:bold">for</span> block <span style="color:#000;font-weight:bold">in</span> get_chunks(plaintext, <span style="color:#f60">16</span>):
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">133</span><span>        block <span style="color:#555">=</span> block[::<span style="color:#555">-</span><span style="color:#f60">1</span>]  <span style="color:#09f;font-style:italic"># reverse each input block</span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">134</span><span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">135</span><span>        cipher_block <span style="color:#555">=</span> encryptor<span style="color:#555">.</span>update(block)
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">136</span><span>        <span style="color:#09f;font-style:italic"># reverse and then byte swap each word in the output block</span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">137</span><span>        cipher_block <span style="color:#555">=</span> cipher_block[::<span style="color:#555">-</span><span style="color:#f60">1</span>]
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">138</span><span>        <span style="color:#069;font-weight:bold">for</span> block <span style="color:#000;font-weight:bold">in</span> get_chunks(cipher_block, <span style="color:#f60">4</span>):
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">139</span><span>            <span style="color:#09f;font-style:italic"># Python hashlib can build each SHA block internally</span>
+</span></span><span style="display:flex; background-color:#d8dada"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">140</span><span>            digest<span style="color:#555">.</span>update(block[::<span style="color:#555">-</span><span style="color:#f60">1</span>])
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">141</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">142</span><span>    <span style="color:#069;font-weight:bold">if</span> args<span style="color:#555">.</span>output <span style="color:#000;font-weight:bold">is</span> None:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">143</span><span>        args<span style="color:#555">.</span>output <span style="color:#555">=</span> os<span style="color:#555">.</span>path<span style="color:#555">.</span>splitext(args<span style="color:#555">.</span>image<span style="color:#555">.</span>name)[<span style="color:#f60">0</span>] <span style="color:#555">+</span> <span style="color:#c30">&#34;-digest-0x0000.bin&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">144</span><span>    <span style="color:#069;font-weight:bold">with</span> <span style="color:#366">open</span>(args<span style="color:#555">.</span>output, <span style="color:#c30">&#34;wb&#34;</span>) <span style="color:#069;font-weight:bold">as</span> f:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">145</span><span>        f<span style="color:#555">.</span>write(iv)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">146</span><span>        digest <span style="color:#555">=</span> digest<span style="color:#555">.</span>digest()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">147</span><span>        <span style="color:#069;font-weight:bold">for</span> word <span style="color:#000;font-weight:bold">in</span> get_chunks(digest, <span style="color:#f60">4</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">148</span><span>            f<span style="color:#555">.</span>write(word[::<span style="color:#555">-</span><span style="color:#f60">1</span>])  <span style="color:#09f;font-style:italic"># swap word order in the result</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">149</span><span>        f<span style="color:#555">.</span>write(<span style="color:#c30">b</span><span style="color:#c30">&#34;</span><span style="color:#c30;font-weight:bold">\xFF</span><span style="color:#c30">&#34;</span> <span style="color:#555">*</span> (<span style="color:#f60">0x1000</span> <span style="color:#555">-</span> f<span style="color:#555">.</span>tell()))  <span style="color:#09f;font-style:italic"># pad to 0x1000</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">150</span><span>        f<span style="color:#555">.</span>write(plaintext_image)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">151</span><span>    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;digest+image written to </span><span style="color:#a00">%s</span><span style="color:#c30">&#34;</span> <span style="color:#555">%</span> args<span style="color:#555">.</span>output)</span></span></code></pre></div>
+<h3 id="implementation-reference-of-image-signature-verification">Implementation reference of image signature verification</h3>
+<p>This code is an extract of the <a href="https://github.com/espressif/esptool/blob/3a82d7a2d31f509038a5947ae73c3e488be5d664/espsecure/__init__.py#L724-L761">espsecure.py</a> tool provided by Espressif, it show how the image signature is verified by the Second Stage Bootloader. Obviously on the device, this is in the bootloader code in C. (Look in ESP-IDF at <code>components/bootloader_support/src</code> or <a href="https://github.com/espressif/esp-idf/tree/master/components/bootloader_support/src">here</a>)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python2" data-lang="python2"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">724</span><span><span style="color:#069;font-weight:bold">def</span> <span style="color:#c0f">verify_signature_v1</span>(args):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">725</span><span>    <span style="color:#c30">&#34;&#34;&#34;Verify a previously signed binary image, using the ECDSA public key&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">726</span><span>    key_data <span style="color:#555">=</span> args<span style="color:#555">.</span>keyfile<span style="color:#555">.</span>read()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">727</span><span>    <span style="color:#069;font-weight:bold">if</span> <span style="color:#c30">b</span><span style="color:#c30">&#34;-BEGIN EC PRIVATE KEY&#34;</span> <span style="color:#000;font-weight:bold">in</span> key_data:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">728</span><span>        sk <span style="color:#555">=</span> ecdsa<span style="color:#555">.</span>SigningKey<span style="color:#555">.</span>from_pem(key_data)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">729</span><span>        vk <span style="color:#555">=</span> sk<span style="color:#555">.</span>get_verifying_key()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">730</span><span>    <span style="color:#069;font-weight:bold">elif</span> <span style="color:#c30">b</span><span style="color:#c30">&#34;-BEGIN PUBLIC KEY&#34;</span> <span style="color:#000;font-weight:bold">in</span> key_data:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">731</span><span>        vk <span style="color:#555">=</span> ecdsa<span style="color:#555">.</span>VerifyingKey<span style="color:#555">.</span>from_pem(key_data)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">732</span><span>    <span style="color:#069;font-weight:bold">elif</span> <span style="color:#366">len</span>(key_data) <span style="color:#555">==</span> <span style="color:#f60">64</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">733</span><span>        vk <span style="color:#555">=</span> ecdsa<span style="color:#555">.</span>VerifyingKey<span style="color:#555">.</span>from_string(key_data, curve<span style="color:#555">=</span>ecdsa<span style="color:#555">.</span>NIST256p)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">734</span><span>    <span style="color:#069;font-weight:bold">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">735</span><span>        <span style="color:#069;font-weight:bold">raise</span> esptool<span style="color:#555">.</span>FatalError(
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">736</span><span>            <span style="color:#c30">&#34;Verification key does not appear to be an EC key in PEM format &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">737</span><span>            <span style="color:#c30">&#34;or binary EC public key data. Unsupported&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">738</span><span>        )
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">739</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">740</span><span>    <span style="color:#069;font-weight:bold">if</span> vk<span style="color:#555">.</span>curve <span style="color:#555">!=</span> ecdsa<span style="color:#555">.</span>NIST256p:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">741</span><span>        <span style="color:#069;font-weight:bold">raise</span> esptool<span style="color:#555">.</span>FatalError(
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">742</span><span>            <span style="color:#c30">&#34;Public key uses incorrect curve. ESP32 Secure Boot only supports &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">743</span><span>            <span style="color:#c30">&#34;NIST256p (openssl calls this curve &#39;prime256v1&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">744</span><span>        )
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">745</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">746</span><span>    binary_content <span style="color:#555">=</span> args<span style="color:#555">.</span>datafile<span style="color:#555">.</span>read()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">747</span><span>    data <span style="color:#555">=</span> binary_content[<span style="color:#f60">0</span>:<span style="color:#555">-</span><span style="color:#f60">68</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">748</span><span>    sig_version, signature <span style="color:#555">=</span> struct<span style="color:#555">.</span>unpack(<span style="color:#c30">&#34;I64s&#34;</span>, binary_content[<span style="color:#555">-</span><span style="color:#f60">68</span>:])
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">749</span><span>    <span style="color:#069;font-weight:bold">if</span> sig_version <span style="color:#555">!=</span> <span style="color:#f60">0</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">750</span><span>        <span style="color:#069;font-weight:bold">raise</span> esptool<span style="color:#555">.</span>FatalError(
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">751</span><span>            <span style="color:#c30">&#34;Signature block has version </span><span style="color:#a00">%d</span><span style="color:#c30">. This version of espsecure &#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">752</span><span>            <span style="color:#c30">&#34;only supports version 0.&#34;</span> <span style="color:#555">%</span> sig_version
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">753</span><span>        )
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">754</span><span>    <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Verifying </span><span style="color:#a00">%d</span><span style="color:#c30"> bytes of data&#34;</span> <span style="color:#555">%</span> <span style="color:#366">len</span>(data))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">755</span><span>    <span style="color:#069;font-weight:bold">try</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">756</span><span>        <span style="color:#069;font-weight:bold">if</span> vk<span style="color:#555">.</span>verify(signature, data, hashlib<span style="color:#555">.</span>sha256):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">757</span><span>            <span style="color:#069;font-weight:bold">print</span>(<span style="color:#c30">&#34;Signature is valid&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">758</span><span>        <span style="color:#069;font-weight:bold">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">759</span><span>            <span style="color:#069;font-weight:bold">raise</span> esptool<span style="color:#555">.</span>FatalError(<span style="color:#c30">&#34;Signature is not valid&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">760</span><span>    <span style="color:#069;font-weight:bold">except</span> ecdsa<span style="color:#555">.</span>keys<span style="color:#555">.</span>BadSignatureError:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">761</span><span>        <span style="color:#069;font-weight:bold">raise</span> esptool<span style="color:#555">.</span>FatalError(<span style="color:#c30">&#34;Signature is not valid&#34;</span>)</span></span></code></pre></div>
+<h2 id="thats-all-folks">That&rsquo;s all folks!</h2>
+<p>That&rsquo;s it for a long blog article, in the next one I will focus on Secure Boot V2.</p>
+
+                        </div>
+                        
+                        
+
+                    </div>
+                    
+
+                    
+
+                    
+
+                    <div class="col-md-3">
+
+                        
+
+                        
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" class="form-control" placeholder="Search">
+                <input type="hidden" name="sitesearch" value="https://nexten.ie/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-template-main"><i class="fas fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Categories</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="nav nav-pills nav-stacked">
+            
+            
+            <li>
+                <a href="/categories/embedded">EMBEDDED (2)</a>
+            </li>
+            
+        </ul>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<div class="panel sidebar-menu">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            
+            <li >
+                <a href="/tags/embedded"><i class="fas fa-tags"></i> embedded</a>
+            </li>
+            
+            <li >
+                <a href="/tags/esp32"><i class="fas fa-tags"></i> esp32</a>
+            </li>
+            
+            <li >
+                <a href="/tags/iot"><i class="fas fa-tags"></i> iot</a>
+            </li>
+            
+            <li >
+                <a href="/tags/ot"><i class="fas fa-tags"></i> ot</a>
+            </li>
+            
+            <li >
+                <a href="/tags/secureboot"><i class="fas fa-tags"></i> secureboot</a>
+            </li>
+            
+        </ul>
+    </div>
+
+</div>
+
+
+
+
+
+
+                        
+
+                    </div>
+                    
+
+                    
+
+                </div>
+                
+
+            </div>
+            
+        </div>
+        
+
+        <footer id="footer">
+    <div class="container">
+
+        
+        <div class="col-md-4 col-sm-6">
+            <h4>About us</h4>
+
+            <p>Cybersecurity company, specialized in Application Security, Embedded Security, Applied Cryptography, and Penetration Testing.</p>
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+        <div class="col-md-4 col-sm-6">
+
+            
+
+        </div>
+        
+
+        
+        <div class="col-md-4 col-sm-6">
+
+          <h4>Contact</h4>
+
+            <p class="text-uppercase"><strong>Nexten Tech Ltd.</strong>
+        <br><p class="hidden-sm hidden-xs">+353 85 252 4082<p>
+        <p class="hidden-md hidden-lg"><a href="tel:+353 85 252 4082" data-animate-hover="pulse"><i class="fas fa-phone"></i></a>
+        <p class="hidden-sm hidden-xs"> <a href="mailto:info@nexten.ie" data-animate-hover="pulse" class="linkgray" >info@nexten.ie</a></p>
+        <p class="hidden-md hidden-lg"><a href="mailto:info@nexten.ie" data-animate-hover="pulse"><i class="fas fa-envelope"></i></a></p>
+      </p>
+      
+
+	    
+
+            <hr class="hidden-md hidden-lg hidden-sm">
+
+        </div>
+        
+        
+
+    </div>
+    
+</footer>
+
+
+
+
+
+
+
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-12">
+            
+            <p class="pull-left">Copyright (c) 2023, Nexten Tech Ltd; all rights reserved.</p>
+            
+            <p class="pull-right">
+              Template by <a href="https://bootstrapious.com/p/universal-business-e-commerce-template">Bootstrapious</a>.
+              
+
+              Ported to Hugo by <a href="https://github.com/devcows/hugo-universal-theme">DevCows</a>.
+            <br>Proudly hosted on <a href="https://github.com">GitHub</a>.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    </div>
+    
+
+    
+<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-parallax/1.1.3/jquery-parallax.js"></script>
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAv7Sza8NSp9_l_g8G2vlo0H4ydEPn_2jY&v=3.exp"></script>
+<script src="/js/hpneo.gmaps.js"></script>
+<script src="/js/gmaps.init.js"></script>
+
+
+<script src="/js/front.js"></script>
+
+
+<script src="/js/owl.carousel.min.js"></script>
+
+
+
+  </body>
+</html>

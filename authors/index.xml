@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Authors on Nexten</title>
+    <title>Authors on Nexten - Cybersecurity, Application Security, Embedded Security</title>
     <link>https://nexten.ie/authors/</link>
-    <description>Recent content in Authors on Nexten</description>
+    <description>Recent content in Authors on Nexten - Cybersecurity, Application Security, Embedded Security</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 26 Nov 2023 11:29:20 +0200</lastBuildDate>
     <atom:link href="https://nexten.ie/authors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>David Robert</title>
+      <link>https://nexten.ie/authors/david-robert/</link>
+      <pubDate>Sun, 26 Nov 2023 11:29:20 +0200</pubDate>
+      <guid>https://nexten.ie/authors/david-robert/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
