@@ -8,15 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>ESP32, Secure Boot (Part 1)</title>
-<meta name="author" content="DevCows" />
+<meta name="author" content="Nexten Cybersecurity" />
 
 
 
 
-<meta name="keywords" content="devcows, hugo, go, embedded, secureboot, esp32, IoT, OT">
+<meta name="keywords" content="Cybersecurity, application security, embedded security, embedded, secureboot, esp32, IoT, OT">
 
 
-<meta name="description" content="Site template made by Devcows using Hugo">
+<meta name="description" content="Nexten Cybersecurity provides Cybersecurity Services: Application Security, Penetration Testing, Embedded IoT OT Security">
 
 <meta name="generator" content="Hugo 0.120.4">
 
@@ -36,7 +36,7 @@
 
 
 
-<link href="/css/custom.css?1701024455" rel="stylesheet">
+<link href="/css/custom.css?1701029437" rel="stylesheet">
 
 
 
@@ -69,7 +69,7 @@
 <meta property="og:title" content="ESP32, Secure Boot (Part 1)">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://nexten.ie/blog/2023/11/26/esp32-secureboot/" />
-<meta property="og:description" content="Site template made by Devcows using Hugo">
+<meta property="og:description" content="Nexten Cybersecurity provides Cybersecurity Services: Application Security, Penetration Testing, Embedded IoT OT Security">
 <meta property="og:image" content="https://nexten.ie/img/banners/banner-2.jpg">
 <meta property="og:image:type" content="image/jpg">
 
@@ -102,7 +102,7 @@
 
 <meta name="twitter:image" content="https://nexten.ie/img/banners/banner-2.jpg">
 
-<meta name="twitter:description" content="Site template made by Devcows using Hugo">
+<meta name="twitter:description" content="Nexten Cybersecurity provides Cybersecurity Services: Application Security, Penetration Testing, Embedded IoT OT Security">
 
 
     <script src="https://kit.fontawesome.com/4e8a710c4e.js" crossorigin="anonymous"></script>
@@ -336,7 +336,7 @@
 <p><a href="https://www.espressif.com/en/products/socs">ESP32 SoCs</a> are very popular System On a Chip (SoC) microcontrollers made by the company <a href="https://espressif.com/">Espressif</a>. The CPU cores used in these are RISC-V or Xtensa cores, depending on the model. They are high-performance, low-cost and embed an impressive amount of hardware peripherals. While they are well known for their wireless capabilities (Wi-Fi, Bluetooth), they have an impressive amount of security features and peripherals built in hardware. This includes: Secure Boot, Flash Encryption, a true Random Number Generator (RNG), Hardware Accelerated SHA, AES, HMAC, and RSA, and a World Controller to enable the implementation of a trusted execution environment (TEE). For these reasons, these chips are now found in several consumer electronics products, as well as in IoT and industrial applications.</p>
 <p>In this article, I will discuss the Secure Boot feature of the ESP32 in version 1. Please note that for new designs, it is recommended to use Secure Boot V2, which I will cover in a future article. There are however several reasons to study Secure Boot V1: MCUs supporting only Secure Boot V1 can&rsquo;t be upgraded to Secure Boot V2. That is a new chip revision, a new silicon. This means that using V2 is only for new designs. Also, to understand the technical choices that Espressif made with V2, learning the weaknesses of V1 is essential. In any case, looking at this implementation is really interesting for anyone willing to learn about security in embedded systems.</p>
 <h2 id="what-is-secure-boot">What is Secure Boot</h2>
-<p>With my threat modeller hat, which I never remove when I do security work, I will first clarify what security threats Secure Boot is attempting to mitigate, then I&rsquo;ll provide a high level explanation on how it works. Finally in this article, we&rsquo;ll review the important implementation details to account for when using Secure Boot on these SoCs.</p>
+<p>With my threat modeler hat, which I never remove when I do security work, I will first clarify what security threats Secure Boot is attempting to mitigate, then I&rsquo;ll provide a high level explanation on how it works. Finally in this article, we&rsquo;ll review the important implementation details to account for when using Secure Boot on these SoCs.</p>
 <h3 id="threat-model">Threat Model</h3>
 <p>When one implements a security feature, it should be crystal clear, what security threat this feature attempts to address. I generally recommend that every security requirement is documented and includes an explicit mapping to the description of the threat this security control is attempting to mitigate. Otherwise, and it happens more often than one may think, there is a lack of clarity into why a specific security feature is implemented. This can result in a false sense of security. And this, in turn, can have severe consequences for the security of the device.</p>
 <p>Secure Boot on embedded systems is implemented as a control to ensure that only the firmware created by the device&rsquo;s manufacturer can be run on the device.</p>
