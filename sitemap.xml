@@ -3,42 +3,45 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://nexten.ie/authors/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
   </url><url>
     <loc>https://nexten.ie/blog/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
   </url><url>
     <loc>https://nexten.ie/categories/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
   </url><url>
     <loc>https://nexten.ie/authors/david-robert/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
   </url><url>
     <loc>https://nexten.ie/tags/embedded/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
   </url><url>
     <loc>https://nexten.ie/categories/embedded/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
   </url><url>
     <loc>https://nexten.ie/tags/esp32/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/blog/2024/01/14/esp32-firmware-dump/</loc>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/tags/iot/</loc>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/</loc>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/tags/ot/</loc>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://nexten.ie/tags/</loc>
+    <lastmod>2024-01-14T14:00:00+02:00</lastmod>
   </url><url>
     <loc>https://nexten.ie/blog/2023/11/26/esp32-secureboot/</loc>
     <lastmod>2023-11-26T11:29:20+02:00</lastmod>
   </url><url>
-    <loc>https://nexten.ie/tags/iot/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
-  </url><url>
-    <loc>https://nexten.ie/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
-  </url><url>
-    <loc>https://nexten.ie/tags/ot/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
-  </url><url>
     <loc>https://nexten.ie/tags/secureboot/</loc>
-    <lastmod>2023-11-26T11:29:20+02:00</lastmod>
-  </url><url>
-    <loc>https://nexten.ie/tags/</loc>
     <lastmod>2023-11-26T11:29:20+02:00</lastmod>
   </url><url>
     <loc>https://nexten.ie/blog/2023/04/11/audio-iot/</loc>
