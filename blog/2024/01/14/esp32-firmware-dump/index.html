@@ -36,7 +36,7 @@
 
 
 
-<link href="/css/custom.css?1705256880" rel="stylesheet">
+<link href="/css/custom.css?1705265243" rel="stylesheet">
 
 
 
@@ -366,15 +366,15 @@ done.
 </code></pre>
 <p>I can confirm on the logic analyzer, the SPI command to identify the chip and the response:
 <img src="/img/logic2.png" alt="logic2"></p>
-<p>Now we can download the firmware:</p>
-<pre><code> $ flashrom -p linux_spi:dev=/dev/spidev0.0,spispeed=1000 -r firmware.bin
+<p>Now we can download the content of the flash:</p>
+<pre><code> $ flashrom -p linux_spi:dev=/dev/spidev0.0,spispeed=1000 -r esp_flash.bin
  [...]
  Reading flash... done.
 
  $ ls -l firmware.bin
--rwx------+ 1 david david 4194304 Jan 14 17:28 firmware.bin
+-rwx------+ 1 david david 4194304 Jan 14 17:28 esp_flash.bin
 </code></pre>
-<p>We now have the firmware. Reverse engineering the firmware will be covered be in future articles.</p>
+<p>We now have the content of the flash. Extracting the different contents from the image, and reverse engineering the firmware will be covered be in future articles.</p>
 <h2 id="issue-fixed-in-recent-modules">Issue fixed in recent modules</h2>
 <p>Looking at the <a href="https://www.espressif.com/sites/default/files/documentation/esp32-wrover-e_esp32-wrover-ie_datasheet_en.pdf">more recent modules versions</a> from Espressif, the internal SPI pins of the SoC are not connected anymore to the module pins. It is possible that Espressif identified this as a weakness and decided to make the firmware dump more complicated. As you can see, pin 17 to 20 are now not connected:</p>
 <p><img src="/img/newpinout.png" alt="newpinout"><br>
@@ -382,7 +382,7 @@ done.
 <p>In such case, the metal shield needs to be unsoldered to so flash chip can be accessible, as I&rsquo;ve done here with a SOIC-8 Test clip connected to the chip:</p>
 <p><img src="/img/shieldremoved.png" alt="shieldremoved"></p>
 <h2 id="summary">Summary</h2>
-<p>This article demonstrates that even if UART, JTAG, DFU are disabled, it is still possible to dump the firmware. For some versions of esp32 modules, this job is actually very easy because the internal SPI port is directly routed to external pins of the module. Here is another picture, where I directly soldered these pins:</p>
+<p>This article demonstrates that even if UART, JTAG, DFU are disabled, it is still possible to dump the content of the flash, which includes the firmware. For some versions of esp32 modules, this job is actually very easy because the internal SPI port is directly routed to external pins of the module. Here is another picture, where I directly soldered these pins:</p>
 <p><img src="/img/esp32-spi4.jpg" alt="spi4"></p>
 <p>Thank you for reading!</p>
 
