@@ -36,7 +36,7 @@
 
 
 
-<link href="/css/custom.css?1705255419" rel="stylesheet">
+<link href="/css/custom.css?1705256880" rel="stylesheet">
 
 
 
@@ -323,7 +323,7 @@
 
                         <div id="post-content">
                           <h1 id="dumping-firmware-of-in-module-esp32-flash">Dumping firmware of in-module ESP32 flash</h1>
-<p>In my <a href="/blog/2023/11/26/esp32-secureboot/">previous article</a>, I wrote about secure boot. In this article, I want to demonstrate one way to dump the ESP32 in-module flash memory, which works, even if different security features are set by burning e-fuses on the chip (JTAG, UART, DFU disabled). This article aims to illustrate the need for secure boot and flash encryption. Dumping, and modifying the firmware is important for testing the mitigations for the threats identified for your device&rsquo;s threat model. That is an important task to do in any device testing.</p>
+<p>In my <a href="/blog/2023/11/26/esp32-secureboot/">previous article</a>, I wrote about secure boot. In this article, I want to demonstrate one way to dump the ESP32 in-module flash memory, which works, even if different security features are set by burning e-fuses on the chip (JTAG, UART, DFU disabled). This article aims to illustrate the need for secure boot and flash encryption. Dumping, and modifying the firmware is important for testing the mitigations for the threats identified in your device&rsquo;s threat model. That is an important task to do in any device testing.</p>
 <p><img src="/img/esp32-spi.jpg" alt="esp32-inmodule-flash-dump"></p>
 <h2 id="firmware-dumping">Firmware dumping</h2>
 <p>There are several ways to dump the firmware on embedded systems. The most common are JTAG/SWD, UART, USB-to-UART bridge, DFU, and by connecting directly to the flash chip.</p>

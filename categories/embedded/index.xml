@@ -13,7 +13,7 @@
       <link>https://nexten.ie/blog/2024/01/14/esp32-firmware-dump/</link>
       <pubDate>Sun, 14 Jan 2024 14:00:00 +0200</pubDate>
       <guid>https://nexten.ie/blog/2024/01/14/esp32-firmware-dump/</guid>
-      <description>Dumping firmware of in-module ESP32 flash In my previous article, I wrote about secure boot. In this article, I want to demonstrate one way to dump the ESP32 in-module flash memory, which works, even if different security features are set by burning e-fuses on the chip (JTAG, UART, DFU disabled). This article aims to illustrate the need for secure boot and flash encryption. Dumping, and modifying the firmware is important for testing the mitigations for the threats identified for your device&amp;rsquo;s threat model.</description>
+      <description>Dumping firmware of in-module ESP32 flash In my previous article, I wrote about secure boot. In this article, I want to demonstrate one way to dump the ESP32 in-module flash memory, which works, even if different security features are set by burning e-fuses on the chip (JTAG, UART, DFU disabled). This article aims to illustrate the need for secure boot and flash encryption. Dumping, and modifying the firmware is important for testing the mitigations for the threats identified in your device&amp;rsquo;s threat model.</description>
     </item>
     <item>
       <title>ESP32, Secure Boot (Part 1)</title>
