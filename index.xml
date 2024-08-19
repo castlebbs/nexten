@@ -103,5 +103,12 @@ SERVICES WE PROVIDE?</description>
       <guid>https://nexten.ie/threatmodeling/</guid>
       <description>We believe that threat modeling is a fundamental component of system and application security, as it helps to identify and prioritize the most relevant and critical threats and countermeasures. Threat modeling is more effective than relying on generic tools and techniques that may miss unique or emerging forms of attack. We have extensive experience in threat modeling, which allows us to identify threats that are critical and not identified by tools relying on rules and automation.</description>
     </item>
+    <item>
+      <title>Training</title>
+      <link>https://nexten.ie/training/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://nexten.ie/training/</guid>
+      <description>Application Security for Software Engineers (2 days) Day 1: Introduction to Application Security for Developers Impact of security on development Developer&amp;rsquo;s role in application security Secure Coding Fundamentals Input validation and sanitization Output encoding Secure data handling and storage Error handling and logging Authentication and Authorization Implementing secure authentication mechanisms Session management Role-based access control (RBAC) Password hashing and salting Hands-on Lab: Secure Coding Practices Exercises in fixing common vulnerabilities Code review techniques Secure API Development RESTful API security best practices API authentication (OAuth 2.</description>
+    </item>
   </channel>
 </rss>
